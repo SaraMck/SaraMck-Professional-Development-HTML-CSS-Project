@@ -1,0 +1,586 @@
+
+/* ---------------------------------
+
+            TABLE OF CONTENTS
+
+            
+        AREAS OF PAGE - line 30 (approx.)
+
+        HERO IMAGE - line 160 (approx.)
+        
+        NAVIGATION - line 180 (approx.)
+            SUB NAV - line 250 (approx.)
+            BREADCRUMB NAV - line 290 (approx.)
+            PAGES LINK NAV - line 320 (approx.)
+            BACK TO TOP NAV - line 330 (approx.)
+
+        ANIMATIONS - line 340 (approx.)
+
+        MEDIA - line 350 (approx.)
+
+        TEXT STYLING - line 410 (approx.)
+
+        TABLE STYLING - line 450 (approx.)
+
+        MEDIA QUERIES - line 480 (approx.)
+
+
+----------------------------------*/ 
+
+
+/* AREAS OF PAGE*/
+
+:root {
+    /* main colours (alt = alternate dark scheme) */
+
+    /* Both light and dark colour schemes chosen conform to WCAG AA and AAA standards */
+
+    /* backgroundd colours */
+    --primary-col: #f5f2ee;
+    --primary-col-alt: #0c0c16;
+    /* text colours */
+    --text-col: #000000;
+    --text-col-alt: #ffffff;
+
+
+    /* box colours */
+    --box-col1: #dac4a4;
+    --box-col0: #dac4a400;
+    --box-col1-alt: #090920;
+    --box-col0-alt: #5158d200;
+    --breadcrumb-col: #EBEBEB;
+    --breadcrumb-col-alt: #121212; 
+    --current-col: #dac4a4;
+    --current-col-alt: #090920;
+    --bar-colour: #ffebcd;
+    --bar-colour-alt: #4b0082;
+
+    /* page highlight colours */
+    
+    --highlight-col: #000000;
+    --highlight-col-alt:  #bebeff;
+    --highlight-border: #371C82;
+    --highlight-border-alt: #ffffff;
+
+    /* Main Section colours */
+    --section-bg-col: #ffffff;
+    --section-bg-col-alt: #000000;
+
+
+    
+    /* default (light) nav box colours */
+    --current-nav-box: var(--current-col);  
+    --hover-nav-box1: var(--box-col1); /* full opacity */
+    --hover-nav-box0: var(--box-col0);    /* no opacity */
+    --breadcrumb-bg: var(--breadcrumb-col);
+
+    /* default (light) page colours */
+    --bg-col: var(--primary-col);
+    --fg-col: var(--text-col);
+    --hl-col: var(--highlight-col);
+    --hl-col-border: var(--highlight-border);
+    --bar-col: var(--bar-colour);
+
+
+
+    /* page settings */
+    font-family: sans-serif, 'Times New Roman', Times, serif;
+    font-weight: 600;
+    --section-padding: 10px;
+    overflow-x: hidden;
+}
+
+header {
+    border: solid 0px;
+    background-color:none;
+    margin-top: -20px;
+
+}
+
+body{
+    background-color: var(--bg-col);
+
+    /* fixes issue with top-bar and bottom-bar not extending to edges of screen */ 
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+
+}
+
+
+#cont {
+    display: block;
+
+}
+
+
+main section {
+    border: solid 10px var(--hl-col);
+    border-radius: 25px;
+    text-align: center;
+    margin: 5px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    background-color: var(--section-bg-col); 
+    overflow: auto; /* fixes table overflow issue*/
+    
+}
+
+
+h1 {
+    /* background-color: brown; */
+    display: inline-block;
+
+}
+
+
+#top-bar {
+
+    background-color: var(--bar-col);
+    padding-bottom: 10px;
+    border-bottom: solid 2px var(--hl-col);
+    padding-top: 10px;
+    font-size: 96%; /* font size reduced to stop overflow on the x-axis */
+}
+
+
+#bottom-bar {
+    background-color: var(--bar-col);
+    padding: 0px;
+    padding-bottom: 10px;
+    border-top: solid 2px var(--hl-col);
+    overflow-x: hidden; /*fixes problem with the return-top-nav bar over extending */
+    text-align: center;
+}
+
+/* HERO IMAGE */
+
+.hero-image {
+    background-image: url("Images/heroimage/heroimage.jpg");
+
+    height: 300px;
+    background-position: center;
+    background-repeat: no-repeat; /* Makes hero image appear only once on screen and not repeatedly */
+    background-size: cover;
+    position: relative;
+    z-index: 0; /* Puts hero image behind subnav box when it is open */
+    border-bottom: solid 2px var(--hl-col);
+
+}
+
+.hero-text {
+    text-align: center;
+    padding-top: 100px; /* (height:padding-top) = (3:1) for centre */
+    color: var(--fg-col);
+    font-size: 30px;
+
+}
+
+/* NAVIGATION */
+
+nav{
+    font-family: Arial, Georgia, 'Times New Roman', Times, serif;
+    position: relative;
+    
+}
+nav ul{
+    list-style: none;
+    padding-top: 30px;
+    left: -10px;
+}
+nav li{
+    display: inline-block;
+    position: relative;
+    padding: 10px;
+    text-align: center;
+    
+}
+
+nav a{
+    padding: 10px;
+    margin: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--hl-col);
+}
+
+
+/* NAVIGATION BOXES */ 
+.block-colour:hover,
+.block-colour.focus {
+    background-color: var(--hover-nav-box);
+    padding: 10px;
+}
+
+.block-colour:hover {
+
+    animation: nav_hover 1200ms 100ms infinite;
+
+}
+.block-colour:active{
+    /*background-color:  var(--current-nav-box); */
+    padding: 10px;
+}
+.current {
+    background-color:  var(--current-nav-box);
+    padding: 10px;
+}
+
+
+
+/* SUBNAV MENU */ 
+
+
+#subnav ul{
+    display: none;
+    background-color: var(--bar-col);
+    border: solid 3px;
+    border-color: var(--hl-col);
+    padding-left: 0;
+    margin-left: 0;
+    
+    
+}
+#subnav ul li {
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-left: 0;
+    padding-left: 0;
+
+}
+#subnav ul li a {
+    text-align: left;
+}
+nav #subnav:hover ul,
+nav #subnav:active ul{
+    display: block;
+    float: left;
+    position: absolute;
+    z-index: 1; /* letting the subnav menu be in front of the hero background image */
+}
+
+
+nav a{
+    list-style: none;
+    padding-top: 30px;
+    text-decoration: none;
+}
+
+
+
+/* BREADCRUMB NAV */
+
+.breadcrumb {
+
+    list-style: none;
+    text-decoration: none;
+    padding-left: 20px;
+}
+.breadcrumb li {
+    display: inline-block;
+    margin-right: 20px;
+    color: var(--fg-col);
+
+}
+.breadcrumb li:not(:last-of-type)::after {
+    /* adds ">" after each list item (excluding the last list item) */
+    content: ">";
+    color: var(--fg-col);
+    margin-left: 20px;
+
+}
+.breadcrumb li a:hover {
+    background-color: var(--breadcrumb-bg);
+}
+.breadcrumb a{
+    color: var(--fg-col);
+    
+}
+.breadcrumb-active a{
+    /*color: var(--hl-col);*/
+    color: #371C82;
+}
+
+
+/* PAGES LINK NAV */
+.page-link{
+    text-decoration: none;
+}
+.page-link:hover{
+    background-color: #5c5c5c1c;
+}
+
+
+/* BACK TO TOP NAVIGATION */
+#return-top-bar {
+    width: auto;
+}
+
+
+/* ANIMATIONS */ 
+
+@keyframes nav_hover {
+    0%, 100% {
+        background-color:  var(--hover-nav-box1);
+    }
+
+    50% {
+        background-color:  var(--hover-nav-box0);
+
+    }
+}
+
+/* MEDIA */
+
+.images-section {
+    /* background-color: pink; */
+    display: inline-block;
+    margin: 10px;
+}
+
+.images-section img {
+    width: 100%;
+    
+}
+
+.image-description {
+    padding: 10px;
+    color: var(--fg-col);
+    padding-bottom: 28px; /* exact size to match bottom of longer description */
+    border-top: solid 1px;
+    border-color: var(--hl-col);
+}
+.image-description:hover {
+    border-color: var(--hl-col-border);
+}
+/* the longer description will not have the bottom padding - helps to keep the media boxes correctly organised */
+.longer-desc {
+    padding: 10px;
+    color: var(--fg-col);
+    border-top: 1px solid var(--hl-col);
+}
+.longer-desc:hover {
+    border-color: var(--hl-col-border);
+
+}
+
+
+.image {
+    float: left;
+    width: 30%;
+    border: 1px solid var(--hl-col);
+    border-width: 1px;
+    margin: 7px;
+}
+
+.image:hover{
+    border-color: var(--hl-col-border);
+    
+
+}
+
+#images-none {
+    color: var(--fg-col);
+
+}
+.videos {
+    float: left;
+    width: 30%;
+    border: 1px solid var(--hl-col);
+    margin: 7px;
+}
+.videos video{
+    display: inline;
+    width: 100%;
+    border-color: var(--hl-col);
+}
+
+/*   TEXT STYLING   */
+span {
+    color: #371C82;
+}
+
+
+
+
+.text {
+    /* max-width: 600px; */
+    width: auto;
+    height: auto;
+    font-weight: 600;
+    color: var(--fg-col);
+    display: inline-block;
+
+    padding: 10px;
+    
+}
+
+p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#details {
+    /* background-color: tomato; */
+    display: inline-block;
+}
+
+
+/* TABLE STYLING */
+
+.cpd-table {
+
+    border-collapse: collapse;
+    margin: 20px;
+    font-size: 20px;
+    width: 90%;
+    display: table;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.cpd-table thead tr {
+    background-color: #5174d6;
+    text-align: left;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.cpd-table thead td {
+    border: solid 3px #000000;
+}
+
+.cpd-table tr,
+.cpd-table td {
+
+    border: solid 3px #5174d6;
+    color: var(--fg-col);
+}
+
+#cpd-total .cpd-total-empty {
+    background-color: #181717;
+
+}
+
+
+/* MEDIA QUERIES  */
+@media (min-width: 1350px) {
+
+    .shorter-desc {
+        padding-bottom: 47px; /* fixes issue with media box placement at 1080p screen size */
+    }
+
+
+}
+@media (max-width: 1350px) {
+    html {
+        font-size: 125%;
+    }
+    p {
+        margin-top: 5%; /* spaces out the paragraphs a bit more with larger font size */
+    }
+    nav li{
+        display: block; /* changes nav menu from horizontal to vertical */
+        margin: 20px;
+
+    }
+    .image {
+        width: 45%;
+
+    }
+    .videos {
+        width: 45%;
+    }
+    .image-description {
+        padding-bottom: 34px;
+    }
+    
+}
+@media (max-width: 640px){
+    html {
+        font-size: 150%;
+
+    }
+    p {
+        margin-top: 10%;
+
+    }
+    .image {
+        width: 97%;
+
+    }
+
+    .videos {
+        width: 97%;
+    }
+
+    #top-bar {
+        margin-top: -50px;
+        
+    }
+    #subnav ul li {
+        display: block;
+
+    }
+    #subnav ul li a {
+        font-size: 65%;
+
+    }
+    
+}
+
+@media (max-width: 340px) {
+    html {
+        font-size: 120%;
+    }
+}
+
+@media (max-width: 290px) {
+    html {
+        font-size: 100%;
+    }
+    nav {
+        font-size: 70%;
+    }
+    #subnav ul{
+        padding: 0px;
+    }
+   
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-col: var(--primary-col-alt);
+        --fg-col: var(--text-col-alt);
+        --current-nav-box: var(--current-col-alt);
+        --hover-nav-box1: var(--box-col1-alt); /* full opacity */
+        --hover-nav-box0: var(--box-col0-alt);    /* no opacity */
+        --hl-col: var(--highlight-col-alt);
+        --hl-col-border: var(--highlight-border-alt);
+        --bar-col: var(--bar-colour-alt);
+        --section-bg: var(--section-bg-col-alt);
+        --breadcrumb-bg: var(--breadcrumb-col-alt);
+    }
+
+    main section {
+        background-color: var(--section-bg-col-alt);
+    }
+
+    .breadcrumb-active a{
+    color: var(--hl-col);
+}
+
+    .hero-image {
+        background-image: url("Images/heroimage/heroimagedark.jpg");
+    }
+
+    span {
+        color: var(--hl-col);
+    }
+
+    .cpd-table thead td {
+        border: solid 3px #ffffff;
+    }
+
+}
+
